@@ -1,0 +1,24 @@
+{
+  "name": "indeed_scraper",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist/* && tsc",
+    "dev": "tsc --watch",
+    "start": "cd dist && node index.js",
+    "test": "",
+    "roll": "cd dist && node"
+  },
+  "author": "Destruct",
+  "license": "ISC",
+  "dependencies": {
+    "npm": "^9.6.6",
+    "puppeteer": "^20.1.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "typescript": "^5.0.4",
+    "winston": "^3.8.2"
+  }
+}
