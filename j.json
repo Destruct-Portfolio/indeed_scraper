@@ -1,0 +1,280 @@
+{
+    "companyPageHeader": {
+        "auroraLogoUrl": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/64x64/94f087c83bd609ae85ebfa927cb5b1ae",
+        "auroraLogoUrl2x": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/128x128/94f087c83bd609ae85ebfa927cb5b1ae",
+        "brandColor": "#003643",
+        "companyHeader": {
+            "happinessGrade": "FAIR",
+            "happinessScore": 68,
+            "name": "Elderwood",
+            "rating": 3.1,
+            "reviewCount": 679,
+            "reviewCountFormatted": "679",
+            "reviewsUrl": "/cmp/Elderwood/reviews"
+        },
+        "followButton": {
+            "brandColor": "#003643",
+            "companyName": "Elderwood",
+            "disclaimerRequired": false,
+            "encodedFccId": "a5c1cd7b5608e04f",
+            "followSource": "acmeReviews-individual",
+            "hashedCsrfToken": "82ad4d49bd906f7c19ea4051c3f7da16",
+            "loggedIn": false
+        },
+        "headerImage": {
+            "headerImageUrl": "https://d2q79iu7y748jz.cloudfront.net/s/_headerimage/980x200/36469b61e64cdc60dc57873cb484ab45",
+            "headerImageUrl2x": "https://d2q79iu7y748jz.cloudfront.net/s/_headerimage/1960x400/36469b61e64cdc60dc57873cb484ab45",
+            "pageLanguage": "en"
+        },
+        "headerVideoUrl": "",
+        "logoUrl": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/96x96/94f087c83bd609ae85ebfa927cb5b1ae",
+        "logoUrl2x": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/94f087c83bd609ae85ebfa927cb5b1ae",
+        "reviewCompanyUrl": "https://www.indeed.com/survey/mc?cid=a5c1cd7b5608e04f&pkind=comp%3Aheader%3Awrite-a-review-button__targeted",
+        "showPremiumHeader": false,
+        "tabMenu": [
+            {
+                "name": "Snapshot",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "overview-tab",
+                "url": "/cmp/Elderwood"
+            },
+            {
+                "name": "Why Join Us",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "about-tab",
+                "url": "/cmp/Elderwood/about"
+            },
+            {
+                "count": "390",
+                "name": "Jobs",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "jobs-tab",
+                "url": "/cmp/Elderwood/jobs"
+            },
+            {
+                "count": "679",
+                "name": "Reviews",
+                "nofollow": false,
+                "selected": true,
+                "turnstileElement": "reviews-tab",
+                "url": "/cmp/Elderwood/reviews"
+            },
+            {
+                "count": "721",
+                "name": "Salaries",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "salaries-tab",
+                "url": "/cmp/Elderwood/salaries"
+            },
+            {
+                "name": "Benefits",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "benefits-tab",
+                "url": "/cmp/Elderwood/benefits"
+            },
+            {
+                "count": "114",
+                "name": "Q&A",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "qna-tab",
+                "url": "/cmp/Elderwood/faq"
+            },
+            {
+                "name": "Interviews",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "interviews-tab",
+                "url": "/cmp/Elderwood/interviews"
+            },
+            {
+                "count": "2",
+                "name": "Photos",
+                "nofollow": false,
+                "selected": false,
+                "turnstileElement": "photos-tab",
+                "url": "/cmp/Elderwood/photos"
+            }
+        ]
+    },
+    "individualHeader": {
+        "companyName": "Elderwood",
+        "writeReviewHref": "https://www.indeed.com/survey/mc?cid=a5c1cd7b5608e04f&pkind=comp%3Areviews%3Areview-this-company-button-individual-reviews__targeted"
+    },
+    "individualReviews": {
+        "companyName": "Elderwood",
+        "encodedFccId": "a5c1cd7b5608e04f",
+        "isEmployer": false,
+        "jobsUrl": "/cmp/Elderwood/jobs",
+        "loggedIn": false,
+        "loginUrl": "/account/login?from=acme-report-review&dest=%2Fcmp%2FElderwood%2Freviews%2Fdo-not-care-about-employees-health-or-wellbeing%3Fid%3D5efe97be911b5a22",
+        "relatedReviews": [
+            {
+                "review": {
+                    "comments": [],
+                    "compensationAndBenefitsRating": {
+                        "rating": 0,
+                        "type": "Compensation/Benefits"
+                    },
+                    "country": "US",
+                    "cultureAndValuesRating": {
+                        "rating": 0,
+                        "type": "Job Culture"
+                    },
+                    "currentEmployee": true,
+                    "encryptedReviewId": "764dc0f8967e00fd",
+                    "h2Header": "Elderwood RN Review",
+                    "helpful": 2,
+                    "indexable": false,
+                    "isDeletable": false,
+                    "jobSecurityAndAdvancementRating": {
+                        "rating": 0,
+                        "type": "Job Security/Advancement"
+                    },
+                    "jobTitle": "RN",
+                    "jobTitleFilterLink": "/cmp/Elderwood/reviews?fjobtitle=Registered+Nurse",
+                    "location": "Amherst, NY",
+                    "locationFilterLink": "/cmp/Elderwood/reviews?fcountry=US&floc=Amherst%2C+NY",
+                    "managementRating": {
+                        "rating": 0,
+                        "type": "Management"
+                    },
+                    "normJobTitle": "Registered Nurse",
+                    "overallRating": 2,
+                    "redacted": false,
+                    "reviewUid": "1gsh3e8tqipb4800",
+                    "reviewUrl": "/cmp/Elderwood/reviews/no-team-work?id=764dc0f8967e00fd",
+                    "sharingLink": "https://www.indeed.com/cmp/Elderwood/reviews/no-team-work?id=764dc0f8967e00fd",
+                    "submissionDate": "March 27, 2023",
+                    "text": {
+                        "text": "No team work. People have their own peers and not good to the new hires. It kills your drive and passion. You have to learn things on your own if you work here. "
+                    },
+                    "title": {
+                        "text": "No team work! "
+                    },
+                    "tweetAutoFillText": "Elderwood review on #indeedjobs: \"No team work! \"",
+                    "type": "NONE",
+                    "unhelpful": 0,
+                    "workAndLifeBalanceRating": {
+                        "rating": 0,
+                        "type": "Job Work/Life Balance"
+                    }
+                },
+                "sameJobTitle": true,
+                "sameLocation": false
+            },
+            {
+                "review": {
+                    "comments": [],
+                    "compensationAndBenefitsRating": {
+                        "rating": 1,
+                        "type": "Compensation/Benefits"
+                    },
+                    "country": "US",
+                    "cultureAndValuesRating": {
+                        "rating": 1,
+                        "type": "Job Culture"
+                    },
+                    "currentEmployee": false,
+                    "encryptedReviewId": "a7cd660979c2450f",
+                    "h2Header": "Elderwood Registered Nurse Review",
+                    "helpful": 0,
+                    "indexable": false,
+                    "isDeletable": false,
+                    "jobSecurityAndAdvancementRating": {
+                        "rating": 1,
+                        "type": "Job Security/Advancement"
+                    },
+                    "jobTitle": "Registered Nurse",
+                    "jobTitleFilterLink": "/cmp/Elderwood/reviews?fjobtitle=Registered+Nurse",
+                    "location": "Lake Placid, NY",
+                    "locationFilterLink": "/cmp/Elderwood/reviews?fcountry=US&floc=Lake+Placid%2C+NY",
+                    "managementRating": {
+                        "rating": 1,
+                        "type": "Management"
+                    },
+                    "normJobTitle": "Registered Nurse",
+                    "overallRating": 1,
+                    "redacted": false,
+                    "reviewUid": "1gne42dvbk7pm802",
+                    "reviewUrl": "/cmp/Elderwood/reviews/terrible-management?id=a7cd660979c2450f",
+                    "sharingLink": "https://www.indeed.com/cmp/Elderwood/reviews/terrible-management?id=a7cd660979c2450f",
+                    "submissionDate": "January 22, 2023",
+                    "text": {
+                        "text": "Lack of quality leadership, no teamwork, high turnover, inability to retain staff, lack of basic quality care, constant resident falls, unaddressed building integrity safety issues. "
+                    },
+                    "title": {
+                        "text": "Terrible Management"
+                    },
+                    "tweetAutoFillText": "Elderwood review on #indeedjobs: \"Terrible Management\"",
+                    "type": "NONE",
+                    "unhelpful": 0,
+                    "workAndLifeBalanceRating": {
+                        "rating": 1,
+                        "type": "Job Work/Life Balance"
+                    }
+                },
+                "sameJobTitle": true,
+                "sameLocation": false
+            },
+            {
+                "review": {
+                    "comments": [],
+                    "compensationAndBenefitsRating": {
+                        "rating": 0,
+                        "type": "Compensation/Benefits"
+                    },
+                    "country": "US",
+                    "cultureAndValuesRating": {
+                        "rating": 0,
+                        "type": "Job Culture"
+                    },
+                    "currentEmployee": false,
+                    "encryptedReviewId": "fe19d883e63aed82",
+                    "h2Header": "Elderwood CNA - Certified Nursing Assistant Review",
+                    "helpful": 0,
+                    "indexable": true,
+                    "isDeletable": false,
+                    "jobSecurityAndAdvancementRating": {
+                        "rating": 0,
+                        "type": "Job Security/Advancement"
+                    },
+                    "jobTitle": "CNA - Certified Nursing Assistant",
+                    "jobTitleFilterLink": "/cmp/Elderwood/reviews?fjobtitle=Nursing+Assistant",
+                    "location": "Ticonderoga, NY",
+                    "locationFilterLink": "/cmp/Elderwood/reviews?fcountry=US&floc=Ticonderoga%2C+NY",
+                    "managementRating": {
+                        "rating": 0,
+                        "type": "Management"
+                    },
+                    "normJobTitle": "Nursing Assistant",
+                    "overallRating": 1,
+                    "redacted": false,
+                    "reviewUid": "1gv1t6k90i16a800",
+                    "reviewUrl": "/cmp/Elderwood/reviews/this-place-needs-a-overhaul-of-management-and-give-the-workers-reason-to-want-to-stay-retraining-of-staff-is-definitely-required?id=fe19d883e63aed82",
+                    "sharingLink": "https://www.indeed.com/cmp/Elderwood/reviews/this-place-needs-a-overhaul-of-management-and-give-the-workers-reason-to-want-to-stay-retraining-of-staff-is-definitely-required?id=fe19d883e63aed82",
+                    "submissionDate": "April 27, 2023",
+                    "text": {
+                        "text": "What is the best part of working at the company?\nThe residents and getting to know them.\n\nWhat is the most stressful part about working at the company?\nLack of staff, administration,  compassion,  unprofessional staff. Watching residents suffer do to neglect.  That is why I quit. \n\nWhat is the work environment and culture like at the company?\nUnprofessionalism, workers are disgruntled because of lack of staff.\n\nWhat is a typical day like for you at the company?\nVery stressful,  hard to get help or find help for that matter."
+                    },
+                    "title": {
+                        "text": "This place needs a overhaul of management and give the workers reason to want to stay. Retraining of staff is definitely required. "
+                    },
+                    "tweetAutoFillText": "Elderwood review on #indeedjobs: \"This place needs a overhaul of management and give the workers reason to want to…\"",
+                    "type": "NONE",
+                    "unhelpful": 0,
+                    "workAndLifeBalanceRating": {
+                        "rating": 0,
+                        "type": "Job Work/Life Balance"
+                    }
+                },
+                "sameJobTitle": false,
+                "sameLocation": true
+            }
+        ]
+    }
