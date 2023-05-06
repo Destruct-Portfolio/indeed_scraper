@@ -4,7 +4,7 @@ import { Page, Browser, executablePath } from "puppeteer";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin());
 
-export class PuppeteerQuoteScrapper {
+export default class PuppeteerScrapper {
   protected $page: Page | null;
   private _browser: Browser | null;
 

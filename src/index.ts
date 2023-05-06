@@ -1,3 +1,5 @@
-import read_assets from "./componenets/read_assets.js";
+import Indeed_scraper from "./componenets/scraper_indeed.js";
 
-console.log(read_assets.read_Links());
+let url =
+  "https://indeed.com/cmp/Elderwood/reviews/do-not-care-about-employees-health-or-wellbeing?id=5efe97be911b5a22";
+await new Indeed_scraper(url).exec();
