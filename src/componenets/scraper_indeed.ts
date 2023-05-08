@@ -1,14 +1,6 @@
 import PuppeteerScrapper from "./puppeteer_scraper.js";
 import fs from "node:fs";
-
-interface company_header {
-  name: string;
-  wellbeing: string;
-  jobs: string;
-  reviews: string;
-  salaries: string;
-  stars: string;
-}
+import { company_header } from "../types";
 
 export default class Indeed_scraper extends PuppeteerScrapper {
   private indeed_link: string;
@@ -85,19 +77,16 @@ export default class Indeed_scraper extends PuppeteerScrapper {
           });
 
           fs.writeFileSync("after_thin.jpeg", await this.$page.screenshot());
+          console.log(this.$page.url());
           let review_Links = await this.$page.evaluate(() => {
             return Array.from(document.querySelectorAll("h2 > a")).map((review) => {
               return (review as HTMLAnchorElement).href;
             });
           });
           console.log(review_Links);
-          reviewsonpage + 20;
+          reviewsonpage = reviewsonpage + 20;
         }
       }
-
-      //      await this.$page.setExtraHTTPHeaders(getRedemptionHeader(JSON.parse(token[8]), this.indeed_link, "GET"));
-      //      await this.$page.goto(this.indeed_link);
-      //      await this.$page.goto("https://bigspy.com/user/login");
     }
   }
 }
