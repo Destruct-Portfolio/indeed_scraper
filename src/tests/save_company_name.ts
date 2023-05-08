@@ -3,13 +3,13 @@ import { company_header } from "../types";
 
 const dummy_data: company_header[] = [
   {
-    name: "125",
-    wellbeing: "1454",
-    stars: "1564",
-    jobs: "15453",
+    name: "randome_name2",
+    wellbeing: "14",
+    stars: "156",
+    jobs: "154",
     reviews: "145432",
     salaries: "15485",
   },
 ];
 
-await Save_data.save_company(dummy_data);
+await new Save_data().save_company(dummy_data);

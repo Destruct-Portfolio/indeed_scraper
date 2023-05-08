@@ -1,6 +1,7 @@
 import PuppeteerScrapper from "./puppeteer_scraper.js";
 import fs from "node:fs";
 import { company_header } from "../types";
+import Save_data from "./save_data.js";
 
 export default class Indeed_scraper extends PuppeteerScrapper {
   private indeed_link: string;
@@ -58,9 +59,7 @@ export default class Indeed_scraper extends PuppeteerScrapper {
 
         //www.indeed.com/cmp/Elderwood/reviews
         console.log(company_information);
-
-        //console.log("waiting for navigation is over now ");
-        // getting all Links >>> need to add check to see if the page is loaded Properly
+        await new Save_data().save_company([company_information]);
 
         let tps = eval(company_information.reviews) % 20;
         console.log(tps);
@@ -83,7 +82,11 @@ export default class Indeed_scraper extends PuppeteerScrapper {
               return (review as HTMLAnchorElement).href;
             });
           });
+
+          new Save_data().save_review_links(review_Links);
+
           console.log(review_Links);
+
           reviewsonpage = reviewsonpage + 20;
         }
       }
