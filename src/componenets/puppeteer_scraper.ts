@@ -36,6 +36,14 @@ export default class PuppeteerScrapper {
     }
   }
 
+  protected async $exists (selector:string){
+    await this.$page!.waitForSelector(selector,{timeout:1000}).then(()=>{
+      return true
+    }).catch((err)=>{
+      return false
+    })
+     
+  }
   protected async $restart() {
     await this._cleanup();
     await this._setup();

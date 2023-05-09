@@ -7,7 +7,11 @@ import { company_header, save_data } from "../types";
 
 export default class Save_data implements save_data {
   save_review_links(review_Links: string[]): void {
-    fs.writeFileSync("../output/review_Links.txt", review_Links.toString(), { flag: "a" });
+    const stream = fs.createWriteStream('../output/review_Links.txt',{ flags: 'a' });
+    review_Links.forEach((str) => {
+      stream.write(str + '\n');
+    });
+    stream.end();
   }
 
   static #Logger = new Logger("save_data", "save_data");
