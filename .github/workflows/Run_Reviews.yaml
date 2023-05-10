@@ -11,7 +11,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install npm
         run: npm install
-      - name: Run roll 
+      - name: build
+        run: tsc
+      - name: Run roll
         timeout-minutes: 2880
         run: npm run start
       - name: Save the generated files
