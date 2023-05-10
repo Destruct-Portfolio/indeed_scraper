@@ -1,7 +1,7 @@
 import Save_data from "../componenets/save_data.js";
 import { company_header } from "../types";
 
-const dummy_data: company_header[] = [
+const dummy_data = [
   {
     name: "randome_name2",
     wellbeing: "14",
@@ -12,4 +12,4 @@ const dummy_data: company_header[] = [
   },
 ];
 
-await new Save_data().save_company(dummy_data);
+await new Save_data().save_csv({name:"dummy", payload:dummy_data});

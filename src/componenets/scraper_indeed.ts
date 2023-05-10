@@ -3,11 +3,17 @@ import fs from "node:fs";
 import { company_header } from "../types";
 import Save_data from "./save_data.js";
 
+
 export default class Indeed_scraper extends PuppeteerScrapper {
+  /**
+   * @INFO there is still more information for the company to be scraped 
+   * @TODO [X] get more information about the remaining data for the company.
+   * @TODO [X] make an interface for the output of the company.
+   */
   private indeed_link: string;
   private comany_selectors = [
     {
-      key: "title",
+      key: "name",
       selector:
         "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > header > div.css-1yjfwlt.eu4oa1w0 > div.css-kyg8or.eu4oa1w0 > div > div > div > div.css-16dv56u.eu4oa1w0 > div.css-1ce69ph.eu4oa1w0 > div.css-12f7u05.e37uo190 > div.css-1e5qoy2.e37uo190 > div > div",
     },
@@ -24,13 +30,7 @@ export default class Indeed_scraper extends PuppeteerScrapper {
     { key: "jobs", selector: "#cmp-skip-header-desktop > div > ul > li:nth-child(3) > a > div" },
     { key: "reviews", selector: "#cmp-skip-header-desktop > div > ul > li.css-hykvqz.eu4oa1w0 > a > div" },
     { key: "salaries", selector: "#cmp-skip-header-desktop > div > ul > li:nth-child(5) > a > div" },
-    {key:'city', selector:""},
-    {key:'state', selector:""},
-    {key:'city', selector:""},
-    {key:'a_pros', selector:""},
-    {key:'b_pros', selector:""},
-    {key:'c_pros', selector:""},
-    
+  
   ];
 
   constructor(indeed_link: string) {
@@ -55,9 +55,8 @@ export default class Indeed_scraper extends PuppeteerScrapper {
         });
       if (company_header) {
         fs.writeFileSync("test.jpeg", await this.$page.screenshot());
+        await this.$exists('')
         let company_information: company_header = await this.$page.evaluate((selectors) => {
-          // check for more button if it exists 
-          let more_button = document.querySelector('#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-1cm81qf.eu4oa1w0 > div > div:nth-child(1) > div > div > div.css-r0sr81.e37uo190 > div.css-182xdcn.eu4oa1w0 > div.css-rr5fiy.eu4oa1w0 > span > span:nth-child(2) > button')
           let DATA: any = {};
           for (let index = 0; index < selectors.length; index++) {
             const element = selectors[index];
@@ -68,7 +67,8 @@ export default class Indeed_scraper extends PuppeteerScrapper {
 
         //www.indeed.com/cmp/Elderwood/reviews
         console.log(company_information);
-        await new Save_data().save_company([company_information]);
+        
+        await new Save_data().save_csv({name:"company", payload:[company_information]});
 
         let tps = eval(company_information.reviews) % 20;
 
