@@ -24,7 +24,7 @@ export default class PuppeteerScrapper {
     if (this.$page)
       await this.$page.setViewport({
         height: 1200,
-        width: 1200,
+        width: 1500,
       });
   }
 

@@ -101,6 +101,7 @@ export default class Reviews_scraper extends PuppeteerScrapper {
               for (var i = 0; i < selectors.length; i++) {
                 Review["pros"] = [];
                 Review["cons"] = [];
+
                 const element = selectors[i];
 
                 switch (element.key) {
