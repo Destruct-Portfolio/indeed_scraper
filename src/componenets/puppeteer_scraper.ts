@@ -7,10 +7,11 @@ puppeteer.use(StealthPlugin());
 export default class PuppeteerScrapper {
   protected $page: Page | null;
   private _browser: Browser | null;
-
+  protected payload: any[];
   constructor() {
     this.$page = null;
     this._browser = null;
+    this.payload = [];
   }
 
   private async _setup() {
@@ -36,13 +37,14 @@ export default class PuppeteerScrapper {
     }
   }
 
-  protected async $exists (selector:string){
-    await this.$page!.waitForSelector(selector,{timeout:1000}).then(()=>{
-      return true
-    }).catch((err)=>{
-      return false
-    })
-     
+  protected async $exists(selector: string): Promise<boolean> {
+    return await this.$page!.waitForSelector(selector, { timeout: 1000 })
+      .then(() => {
+        return true;
+      })
+      .catch((err) => {
+        return false;
+      });
   }
   protected async $restart() {
     await this._cleanup();

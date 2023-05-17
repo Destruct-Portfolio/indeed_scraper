@@ -1,10 +1,13 @@
 import Indeed_scraper from "./componenets/scraper_indeed.js";
 import Save_data from "./componenets/save_data.js";
+import Handler from "./core/handler.js";
 
-let url =
-  "https://indeed.com/cmp/Elderwood/reviews/do-not-care-about-employees-health-or-wellbeing?id=5efe97be911b5a22";
+let url = "https://www.indeed.com/cmp/US-Nursing/reviews?fjobtitle=Registered+Nurse";
+
+// "https://indeed.com/cmp/Elderwood/reviews/do-not-care-about-employees-health-or-wellbeing?id=5efe97be911b5a22";
 
 //await new Indeed_scraper(url).exec();
+
 import Reviews_scraper from "./componenets/scrape_reviews.js";
 
 let url_List = [
@@ -114,4 +117,6 @@ let url_List = [
   "https://www.indeed.com/cmp/Elderwood/reviews/miserable-place-to-work?id=d114382d9a594157",
   "https://www.indeed.com/cmp/Elderwood/reviews/terrible-management-and-terrible-work-environment?id=2acf9ad06478a192",
 ];
-await new Reviews_scraper(url_List).exec();
+
+await new Handler().exec();
+//await new Reviews_scraper(url_List).exec();
