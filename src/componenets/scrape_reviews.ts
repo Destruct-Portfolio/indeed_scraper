@@ -8,11 +8,12 @@ export default class Reviews_scraper extends PuppeteerScrapper {
    * @TODO [x] fix the spelling for "tittle"
    * @TODO [x] Add this URL, company, date.
    * @TODO [x] regex for the description so it will not return new lines
-   * @TODO [ ] compensation_benefits is returning null for some reason on some links
-   * @TODO [ ] find a way to replace the null situation with the comment
+   * @TODO [X] compensation_benefits is returning null for some reason on some links
+   * @TODO [X] find a way to replace the null situation with the comment
    * @TODO
    */
   private review_Links: string[];
+
   constructor(review_Links: string[]) {
     super();
     this.review_Links = review_Links;
@@ -79,6 +80,9 @@ export default class Reviews_scraper extends PuppeteerScrapper {
 
     if (this.$page) {
       for (let link of this.review_Links) {
+        if(!link.includes('https://')){
+          return
+        }
         await this.$page.goto(link, { timeout: 2 * 60 * 1000, waitUntil: "networkidle2" });
         // need to do a check here
         //  fs.writeFileSync("item.jpeg", await this.$page.screenshot());
