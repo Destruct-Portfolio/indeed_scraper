@@ -1,11 +1,14 @@
 import fs from "node:fs";
 import Logger from "../misc/loggger.js";
+import CSV from "csv-parser";
+import { Readable } from "readable-stream";
 
 export default class read_assets {
   static Logger = new Logger("read_assets", "read_assets");
   static _tokenPath = "../assets/privacypass.token";
   static _indeedLinks = "../assets/indeed_custom_review_links.txt";
   static _reviewsLinks = "../output/review_Links.txt";
+  static _companycsv = "../output/company.csv";
 
   public static read_Links(): string[] {
     this.Logger.info("reading Links ... ");
@@ -86,5 +89,29 @@ export default class read_assets {
         this.Logger.error(error.message);
       }
     }
+  }
+
+  public static read_company_csv(link: string): Promise<any[]> {
+    const results: any[] = [];
+    const fileData = fs.readFileSync(link, "utf8");
+
+    return new Promise<any[]>((resolve, reject) => {
+      const stream = new Readable();
+      stream.push(fileData);
+      stream.push(null);
+
+      stream
+        .pipe(CSV())
+        .on("data", (data: any) => {
+          results.push(data);
+        })
+        .on("end", () => {
+          console.log(results);
+          resolve(results);
+        })
+        .on("error", (error: any) => {
+          reject(error);
+        });
+    });
   }
 }

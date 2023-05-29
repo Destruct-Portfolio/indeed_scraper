@@ -2,6 +2,7 @@ import read_assets from "../componenets/read_assets.js";
 import Logger from "../misc/loggger.js";
 import Indeed_scraper from "../componenets/scraper_indeed.js";
 import Reviews_scraper from "../componenets/scrape_reviews.js";
+
 import fs from "node:fs";
 
 export default class Handler {
@@ -31,6 +32,8 @@ export default class Handler {
         fs.rm("./review_Link/txt", () => {
           console.log("Deleting Temporary Files ...");
         });
+
+        // saving to db
       } catch (error) {
         if (error instanceof Error) {
           this._Logger.error(error.message);

@@ -4,7 +4,7 @@ import Logger from "../misc/loggger.js";
 import { save_csv } from "../types/index";
 // need to fix the payload type to follow an enum
 
-import { company_header, save_data } from "../types";
+import { save_data } from "../types";
 
 export default class Save_data implements save_data {
   save_review_links(review_Links: string[]): void {

@@ -26,76 +26,11 @@ export default class Indeed_scraper extends PuppeteerScrapper {
    * ]
    * @TODO [X] replace the function for review page navigation with clicks instead of trying to calculate
    * @TODO [X] there is some issues with webscraping company information we need to make sure its there !
+   * @TODO [X] add the company name from the website "company_name"
+   * @TODO [X] check the string encoding for the strings and shit
    * @TODO [ ] needs heavy refactoring there is a lot of repetition
    */
   private indeed_link: string;
-
-  /*  
-
-  private company_selectors2 = [
-    {
-      key: "work_life_balance",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(4) > div:nth-child(5) > div:nth-child(1) > div > div",
-    },
-    {
-      key: "compensation_Benefits",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(4) > div:nth-child(5) > div:nth-child(2) > div > div",
-    },
-    {
-      key: "job_security_advancement",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(4) > div:nth-child(5) > div:nth-child(3) > div > div",
-    },
-    {
-      key: "management",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(4) > div:nth-child(5) > div:nth-child(4) > div > div",
-    },
-    {
-      key: "culture",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(4) > div:nth-child(5) > div:nth-child(5) > div > div",
-    },
-  ];*/
-  private comany_selectors = [
-    {
-      key: "company",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > header > div.css-1yjfwlt.eu4oa1w0 > div.css-kyg8or.eu4oa1w0 > div > div > div > div.css-16dv56u.eu4oa1w0 > div.css-1ce69ph.eu4oa1w0 > div.css-12f7u05.e37uo190 > div.css-1e5qoy2.e37uo190 > div > div",
-    },
-    {
-      key: "overall_rating",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > header > div.css-1yjfwlt.eu4oa1w0 > div.css-kyg8or.eu4oa1w0 > div > div > div > div.css-16dv56u.eu4oa1w0 > div.css-1ce69ph.eu4oa1w0 > div.css-12f7u05.e37uo190 > div.css-1dk5aj.e37uo190 > div > span.css-htn3vt.e1wnkr790",
-    },
-    {
-      key: "Work_Life_Balance",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(3) > div:nth-child(5) > div:nth-child(1) > div > div",
-    },
-    {
-      key: "componsation_benfit",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(3) > div:nth-child(5) > div:nth-child(2) > div > div",
-    },
-    {
-      key: "Job_Security_Advancement",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(3) > div:nth-child(5) > div:nth-child(3) > div > div",
-    },
-    {
-      key: "Management",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(3) > div:nth-child(5) > div:nth-child(4) > div > div",
-    },
-    {
-      key: "Culture",
-      selector:
-        "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-ypgzzu.eu4oa1w0 > div:nth-child(3) > div:nth-child(5) > div:nth-child(5) > div > div",
-    },
-  ];
 
   constructor(indeed_link: string) {
     super();
@@ -122,10 +57,9 @@ export default class Indeed_scraper extends PuppeteerScrapper {
         if (company_header) {
           let company_data2 = await this.$page.evaluate(() => {
             let x: any = {};
-            let Parrent_Element = (document.querySelector('[data-testid="topic-filter-list"]') as HTMLElement)
-              .innerText;
+            let Parent_Element = (document.querySelector('[data-testid="topic-filter-list"]') as HTMLElement).innerText;
 
-            let parts = Parrent_Element.split("\n");
+            let parts = Parent_Element.split("\n");
             parts.map((item, index) => {
               if (
                 item === "Work-Life Balance" ||
@@ -134,15 +68,21 @@ export default class Indeed_scraper extends PuppeteerScrapper {
                 item === "Management" ||
                 item === "Culture"
               ) {
-                x[item.replace(/[^a-zA-Z0-9_]/g, "_")] = parts[index - 1];
+                x[item.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase()] = parts[index - 1];
               }
             });
 
+            x["company_name"] = (
+              document.querySelector(
+                "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-1kmudnk.eu4oa1w0 > div.css-kckn0r.e37uo190 > h1"
+              ) as HTMLElement
+            ).innerText.split("Employee")[0];
+
             return x;
           });
+
           company_data2["company"] = this.indeed_link.split("/")[4];
           company_data2["url"] = this.indeed_link;
-
           company_data2["overall_rating"] = await this.$page.evaluate(() => {
             return (document.querySelector('[data-tn-component="rating-histogram"]') as HTMLElement)
               ? (document.querySelector('[data-tn-component="rating-histogram"]') as HTMLElement).innerText.split(
@@ -151,7 +91,6 @@ export default class Indeed_scraper extends PuppeteerScrapper {
               : null;
           });
 
-          console.log(company_data2);
           await new Save_data().save_csv({ name: "company", payload: [company_data2] });
           let NextPage = await this.$exists(
             "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-1cm81qf.eu4oa1w0 > div.cmp-ReviewsList > nav > ul > li:nth-child(3) > a"
@@ -169,10 +108,10 @@ export default class Indeed_scraper extends PuppeteerScrapper {
               //  console.log(reviews_Links);
               new Save_data().save_review_links(reviews_Links);
               // we check if there is a next page
-              let NextPage_stil_exists = await this.$exists(
+              let NextPage_still_exists = await this.$exists(
                 "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-1cm81qf.eu4oa1w0 > div.cmp-ReviewsList > nav > ul > li:nth-child(3) > a"
               );
-              if (NextPage_stil_exists) {
+              if (NextPage_still_exists) {
                 let link = await this.$page.evaluate(() => {
                   return (
                     document.querySelector(
@@ -197,7 +136,6 @@ export default class Indeed_scraper extends PuppeteerScrapper {
         }
       }
     } catch (error) {
-      console.log("Fuckkkkkkkkkkkkk something else i need to think about rn");
       console.log(error);
     }
   }

@@ -27,7 +27,7 @@ export default class Reviews_scraper extends PuppeteerScrapper {
           "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-1cm81qf.eu4oa1w0 > div > div:nth-child(1) > div > div > div.css-r0sr81.e37uo190 > div.css-1edyzoo.eu4oa1w0 > div > button",
       },
       {
-        key: "tittle",
+        key: "title",
         selector:
           "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-1cm81qf.eu4oa1w0 > div > div:nth-child(1) > div > div > div.css-r0sr81.e37uo190 > div.css-182xdcn.eu4oa1w0 > h1",
       },
@@ -80,8 +80,8 @@ export default class Reviews_scraper extends PuppeteerScrapper {
 
     if (this.$page) {
       for (let link of this.review_Links) {
-        if(!link.includes('https://')){
-          return
+        if (!link.includes("https://")) {
+          return;
         }
         await this.$page.goto(link, { timeout: 2 * 60 * 1000, waitUntil: "networkidle2" });
         // need to do a check here
@@ -95,7 +95,6 @@ export default class Reviews_scraper extends PuppeteerScrapper {
             return true;
           })
           .catch(() => {
-            // if that didn't show means that there is the Cloud_flare //
             return false;
           });
         if (company_header) {
@@ -147,9 +146,9 @@ export default class Reviews_scraper extends PuppeteerScrapper {
                       for (const div of pros_cons_combined) {
                         let parent_element = div.parentElement!.innerText;
                         if (parent_element.includes("Pros")) {
-                          Review.pros.push((div as HTMLElement).innerText);
+                          Review.pros.push((div as HTMLElement).innerText.toString());
                         } else if (parent_element.includes("Cons")) {
-                          Review.cons.push((div as HTMLElement).innerText);
+                          Review.cons.push((div as HTMLElement).innerText.toString());
                         }
                       }
                     }
@@ -173,7 +172,7 @@ export default class Reviews_scraper extends PuppeteerScrapper {
                     }
                     break;
                   default:
-                    Review[element.key] = (document.querySelector(element.selector!) as HTMLElement)
+                    Review[element.key.toLowerCase()] = (document.querySelector(element.selector!) as HTMLElement)
                       ? (document.querySelector(element.selector!) as HTMLElement).innerText
                       : null;
                 }
@@ -190,6 +189,7 @@ export default class Reviews_scraper extends PuppeteerScrapper {
           }
         } else {
           fs.writeFileSync("./if_not.jpeg", await this.$page.screenshot());
+          return;
         }
       }
     }
