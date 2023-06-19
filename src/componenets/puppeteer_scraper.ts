@@ -56,5 +56,6 @@ export default class PuppeteerScrapper {
     await this._setup();
     await this.$extract();
     await this._cleanup();
+    return this.payload;
   }
 }

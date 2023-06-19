@@ -25,7 +25,7 @@ export default class Indeed_scraper extends PuppeteerScrapper {
    * "culture:3.8"
    * ]
    * @TODO [X] replace the function for review page navigation with clicks instead of trying to calculate
-   * @TODO [X] there is some issues with webscraping company information we need to make sure its there !
+   * @TODO [X] there is some issues with Web-scraping company information we need to make sure its there !
    * @TODO [X] add the company name from the website "company_name"
    * @TODO [X] check the string encoding for the strings and shit
    * @TODO [ ] needs heavy refactoring there is a lot of repetition
@@ -37,7 +37,7 @@ export default class Indeed_scraper extends PuppeteerScrapper {
     this.indeed_link = indeed_link;
   }
 
-  protected async $extract(): Promise<void> {
+  protected async $extract() {
     try {
       if (this.$page !== null) {
         // we need to run a check to see if the  page is cloudflare protected or not
@@ -68,7 +68,12 @@ export default class Indeed_scraper extends PuppeteerScrapper {
                 item === "Management" ||
                 item === "Culture"
               ) {
-                x[item.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase()] = parts[index - 1];
+                x[
+                  item
+                    .replace(/\s/g, "")
+                    .replace(/[^a-zA-Z0-9_]/g, "_")
+                    .toLowerCase()
+                ] = parts[index - 1];
               }
             });
 
@@ -82,7 +87,7 @@ export default class Indeed_scraper extends PuppeteerScrapper {
           });
 
           company_data2["company"] = this.indeed_link.split("/")[4];
-          company_data2["url"] = this.indeed_link;
+          company_data2["company_url"] = this.indeed_link;
           company_data2["overall_rating"] = await this.$page.evaluate(() => {
             return (document.querySelector('[data-tn-component="rating-histogram"]') as HTMLElement)
               ? (document.querySelector('[data-tn-component="rating-histogram"]') as HTMLElement).innerText.split(
@@ -133,10 +138,12 @@ export default class Indeed_scraper extends PuppeteerScrapper {
             });
             new Save_data().save_review_links(reviews_Links);
           }
+          this.payload = company_data2;
         }
       }
     } catch (error) {
       console.log(error);
+      this.payload = [];
     }
   }
 }

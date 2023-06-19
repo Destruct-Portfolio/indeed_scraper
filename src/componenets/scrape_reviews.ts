@@ -10,13 +10,14 @@ export default class Reviews_scraper extends PuppeteerScrapper {
    * @TODO [x] regex for the description so it will not return new lines
    * @TODO [X] compensation_benefits is returning null for some reason on some links
    * @TODO [X] find a way to replace the null situation with the comment
-   * @TODO
    */
   private review_Links: string[];
+  private ID: number;
 
-  constructor(review_Links: string[]) {
+  constructor(review_Links: string[], ID: number) {
     super();
     this.review_Links = review_Links;
+    this.ID = ID;
   }
 
   protected async $extract(): Promise<void> {
@@ -101,9 +102,10 @@ export default class Reviews_scraper extends PuppeteerScrapper {
           try {
             let review_data = await this.$page.evaluate((selectors) => {
               let Review: any = {};
+
               for (var i = 0; i < selectors.length; i++) {
-                Review["pros"] = [];
-                Review["cons"] = [];
+                Review["pros"] = "N/A";
+                Review["cons"] = "N/A";
 
                 const element = selectors[i];
 
@@ -115,13 +117,13 @@ export default class Reviews_scraper extends PuppeteerScrapper {
                     if (more_button === null) {
                       Review[element.key] = (document.querySelector(element.selector!) as HTMLElement)
                         ? (document.querySelector(element.selector!) as HTMLElement).innerText.replace(/\n/g, " ")
-                        : null;
+                        : "N/A";
                     } else {
                       (more_button as HTMLButtonElement).click();
 
                       let first_part = (document.querySelector(element.selector!) as HTMLElement)
                         ? (document.querySelector(element.selector!) as HTMLElement).innerText
-                        : null;
+                        : "";
 
                       let second_part = (document.querySelector(
                         "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-1cm81qf.eu4oa1w0 > div > div:nth-child(1) > div > div > div.css-r0sr81.e37uo190 > div.css-182xdcn.eu4oa1w0 > div.css-rr5fiy.eu4oa1w0 > span > span.css-1cxc9zk.e1wnkr790 > span:nth-child(2) > span"
@@ -131,12 +133,14 @@ export default class Reviews_scraper extends PuppeteerScrapper {
                               "#cmp-container > div > div.dd-privacy-allow.css-kyg8or.eu4oa1w0 > main > div.css-16ydvd8.e37uo190 > div.css-1cm81qf.eu4oa1w0 > div > div:nth-child(1) > div > div > div.css-r0sr81.e37uo190 > div.css-182xdcn.eu4oa1w0 > div.css-rr5fiy.eu4oa1w0 > span > span.css-1cxc9zk.e1wnkr790 > span:nth-child(2) > span"
                             ) as HTMLElement
                           ).innerText
-                        : null;
+                        : "";
 
                       Review["comment"] = first_part!.replace(/\n/g, " ");
                       +" " + second_part!.replace(/\n/g, " ");
                     }
+
                     break;
+
                   case "pros_cons":
                     let pros_cons_exists = document.querySelector(element.selector!);
                     if (pros_cons_exists) {
@@ -146,11 +150,14 @@ export default class Reviews_scraper extends PuppeteerScrapper {
                       for (const div of pros_cons_combined) {
                         let parent_element = div.parentElement!.innerText;
                         if (parent_element.includes("Pros")) {
-                          Review.pros.push((div as HTMLElement).innerText.toString());
+                          Review.pros = (div as HTMLElement).innerText.toString();
                         } else if (parent_element.includes("Cons")) {
-                          Review.cons.push((div as HTMLElement).innerText.toString());
+                          Review.cons = (div as HTMLElement).innerText.toString();
                         }
                       }
+                    } else {
+                      Review.pros = "N/A";
+                      Review.cons = "N/A";
                     }
                     break;
                   case "address":
@@ -167,20 +174,24 @@ export default class Reviews_scraper extends PuppeteerScrapper {
                       Review["city"] = _address!.split(", ")[0];
                       Review["state"] = _address!.split(", ")[1];
                     } else {
-                      Review["city"] = null;
-                      Review["state"] = null;
+                      Review["city"] = "N/A";
+                      Review["state"] = "N/A";
                     }
                     break;
+
                   default:
                     Review[element.key.toLowerCase()] = (document.querySelector(element.selector!) as HTMLElement)
                       ? (document.querySelector(element.selector!) as HTMLElement).innerText
-                      : null;
+                      : "N/A";
                 }
                 Review["link"] = document.URL;
               }
+
               return Review;
             }, selectors);
 
+            review_data["company_id"] = this.ID;
+            this.payload.push(review_data);
             console.log(review_data);
             await new Save_data().save_csv({ name: "Reviews", payload: [review_data] });
           } catch (error) {

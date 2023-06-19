@@ -54,6 +54,14 @@ export interface Company {
   management: string | null;
   culture: string | null;
   company: string | null;
-  url: string | null;
+  company_name: string | null;
+  company_url: string | null;
   overall_rating: string | null;
+}
+
+export interface config {
+  host: string;
+  password: string;
+  user: string;
+  database_name: string;
 }

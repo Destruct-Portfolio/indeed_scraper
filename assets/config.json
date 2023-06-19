@@ -1,8 +1,0 @@
-{
-    "data_base_name": "testingDB",
-    "host": "localhost",
-    "user": "root",
-    "password": "123456789aaAA@@",
-    "company_table_name": "companies",
-    "review_table_name": "reviews"
-}
