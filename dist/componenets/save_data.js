@@ -1,7 +1,7 @@
 import ObjectsToCsv from "objects-to-csv";
 import fs from "node:fs";
 import Logger from "../misc/loggger.js";
-class Save_data {
+export default class Save_data {
     save_review_links(review_Links) {
         const stream = fs.createWriteStream("../output/review_Links.txt", { flags: "a" });
         review_Links.forEach((str) => {
@@ -41,4 +41,3 @@ class Save_data {
         }
     }
 }
-export default Save_data;

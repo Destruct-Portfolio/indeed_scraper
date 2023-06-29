@@ -29,6 +29,7 @@ export default class PuppeteerScrapper {
             this.$page = null;
             await this._browser.close();
             this._browser = null;
+            console.log("Hello Worl Mate This is cool Af ");
         }
     }
     async $exists(selector) {

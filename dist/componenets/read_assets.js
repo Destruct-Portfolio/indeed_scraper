@@ -2,7 +2,7 @@ import fs from "node:fs";
 import Logger from "../misc/loggger.js";
 import CSV from "csv-parser";
 import { Readable } from "readable-stream";
-class read_assets {
+export default class read_assets {
     static Logger = new Logger("read_assets", "read_assets");
     static _tokenPath = "../assets/privacypass.token";
     static _indeedLinks = "../assets/indeed_custom_review_links.txt";
@@ -103,4 +103,3 @@ class read_assets {
         });
     }
 }
-export default read_assets;
